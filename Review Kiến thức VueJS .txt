@@ -1,0 +1,95 @@
+Review Kiến thức VueJS: 
+1.Interpolation:
++ Cú pháp: {{Data}}
++ Tác dung: Nhúng dữ liệu từ key data trong obj được tạo ra bởi createApp của vue nhằm hiển thị dữ liệu từ data sang DOM 
++ Ví dụ: 
+Code Vue JS như sau:
+Vue.createApp({
+  data: () => {
+    return {
+      nameUser: "Lê Nguyễn Bảo Tâm"
+    };
+  },
+}).mount("#interpolation");
+
+Muốn hiển thị ra DOM:
+<h1>{{nameUSer}}</h1>
+
+Output: <h1>Lê Nguyễn Bảo Tâm</h1>
+----------------------------------------------------------------------------------------------------------------------
+2.Bind-attribute:
++cú pháp: v-bind:"key data"
++Tác dụng: Nhúng nội dung từ value của key data ợc tạo ra bởi createApp của vue nhằm hiển thị dữ liệu từ data sang DOM 
++ Ví dụ: 
+Code Vue JS như sau:
+Vue.createApp({
+  data: () => {
+    return {
+      linkImage:
+        "https://i.pinimg.com/originals/6b/13/8e/6b138e9532d25a9bb2abbe402dc361b8.jpg",
+    };
+  },
+}).mount("#bind-attribute");
+
+
+Muốn hiển thị ra DOM:
+<img v-bind:src="linkImage" />
+
+Output: <img src="https://i.pinimg.com/originals/6b/13/8e/6b138e9532d25a9bb2abbe402dc361b8.jpg" />
+
+----------------------------------------------------------------------------------------------------------------------
+3.methods:
++cú pháp: {{ function() }}
++Tác dụng : trả về các kết quả logic đã được tính toán
++ Vue.createApp({
+  data: () => {
+    return {
+      taiOrXiuResult: "Chưa xác định",
+    };
+  },
+  methods: {
+    createNumbers() {
+      function random(min, max) {
+        const num = Math.floor(Math.random() * (max - min + 1)) + min;
+        return num;
+      }
+      const total = [random(1, 6), random(1, 6), random(1, 6)].reduce(
+        (cr, tt) => cr + tt,
+        0
+      );
+
+      return total;
+    },
+    renderTaiOrXiu() {
+      const total = this.createNumbers();
+      if (total >= 11) {
+        this.taiOrXiuResult = "Tài";
+      } else {
+        this.taiOrXiuResult = "Xỉu";
+      }
+    },
+  },
+}).mount("#method");
+
+
+-Kết quả: Trả về ngẫu nhiên Xỉu hoặc Tài dựa trên số random được từ trước đó
+
+4.Raw-html:
++ <tag v-html="key data"> </tag>
++ tác dụng: render ra DOM nội dung có thể convert sang kiểu html
++ ví dụ: 
+Vue.createApp({
+  data: () => {
+    return {
+      message: `<h1>Học Vue JS</h1>`,
+    };
+  },
+}).mount("#raw-html");
+
+Muốn hiển thị được: 
+<div v-html="message"> </div>
+
+Output: <div>
+   <h1>Học Vue JS</h1>
+</div>
+

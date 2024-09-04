@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Link css Nội tuyến -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Vue JS Chapter 1</h1>
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="interpolation"
+      >
+        <h2>interpolation</h2>
+        <hr />
+        <!-- Iterpolation:  là một kỹ thuật để nhúng dữ liệu vào trong template (giao diện) của component. Nó cho phép bạn hiển thị các giá trị của biến hoặc các kết quả tính toán trong HTML, tạo ra các nội dung động dựa trên dữ liệu trong ứng dụng. -->
+        <p>Tên: {{nameUser}}</p>
+        <p>Lớp: {{className}}</p>
+        <p>Technical Skill: {{technicalSkill}}</p>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="bind-attribute"
+      >
+        <h2>bind-attribute</h2>
+        <hr />
+        <!-- Bind-attribute: Giúp ta có thể nhúng dữ liệu các thuộc tính của thẻ (điều mà interpolation không làm được) cú pháp sẽ là v-bind: + tên attribute  -->
+        <a v-bind:href="linkInfo">
+          <img class="img-thumbnail" v-bind:src="linkImage" alt="" />
+        </a>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="method"
+      >
+        <h2>method</h2>
+        <hr />
+        <p>Tài Hay Xỉu : {{taiOrXiuResult}}</p>
+
+        <button @click="renderTaiOrXiu" class="btn-danger">Change</button>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="raw-html"
+      >
+        <h2>raw-html</h2>
+        <hr />
+        <div v-html="message"></div>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="event"
+      >
+        <h2>event</h2>
+        <hr />
+        <span>Count: {{count}}</span>
+        <span v-once>Count 2: {{count}}</span>
+        <button class="btn-danger btn" @:click="handleCount($event,1)">
+          Count
+        </button>
+        <button class="btn-danger btn" @:click="count += 10">Count</button>
+
+        <form @:submit.prevent="handleSubmit">
+          <button type="submit" class="btn btn-success mt-2">Submit</button>
+        </form>
+        <hr />
+
+        <div>
+          <h1>Login</h1>
+          <div class="form-group">
+            <label for="tk">Tài Khoản:</label>
+            <input
+              type="text"
+              id="tk"
+              class="form-control"
+              @keyup.enter="handleLogin"
+            />
+          </div>
+          <div class="form-group">
+            <label for="mk">Mật khẩu:</label>
+            <input type="password" id="mk" class="form-control" />
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="two-way-binding"
+      >
+        <h2>two-way-binding</h2>
+        <hr />
+
+        <div class="form-group">
+          <label for="message">message</label>
+          <input
+            @input="handleForm"
+            type="text"
+            id="message"
+            class="form-control"
+          />
+        </div>
+        <div>
+          <p class="alert alert-danger">{{message}}</p>
+        </div>
+        <div class="form-group">
+          <label for="checked">checked</label>
+          <input
+            v-model="checked"
+            type="checkbox"
+            id="checked"
+            class="form-control"
+          />
+        </div>
+        <div>
+          <p class="alert alert-danger">
+            Checkbox is {{ checked ? 'checked' : 'unchecked' }}
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="computed-and-watchers"
+      >
+        <h2>computed-and-watchers</h2>
+        <hr />
+        <p>Count: {{count}}</p>
+        <button class="btn btn-success mb-3" @click="handleIncrement">
+          Increment
+        </button>
+
+        <hr />
+        <div class="form-group">
+          <label for="lastName">lastName</label>
+          <input
+            v-model="lastName"
+            type="text"
+            id="lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="firstName">firstName</label>
+          <input
+            v-model="firstName"
+            type="text"
+            id="firstName"
+            class="form-control"
+          />
+        </div>
+        <p class="alert alert-success">Họ và Tên: {{fullName}}</p>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="styling"
+      >
+        <h2>styling</h2>
+        <hr />
+        <p :style="{backgroundColor: bgColor}">My Content</p>
+        <div>
+          <div class="circle mb-3" :class="{ 'circle-red' : isFormat }"></div>
+          <button class="btn btn-info" @click="changeBg">Format</button>
+        </div>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="directive"
+      >
+        <h2>directive</h2>
+        <hr />
+        <div class="mb-3">
+          <div>
+            <p v-if="isActive" class="alert alert-success">Nguyễn Phong Hào</p>
+            <button v-else="isActive" @click="login" class="btn btn-info">
+              login
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <img
+            v-if="nameAnimals === 'Dog'"
+            src="https://i.pinimg.com/originals/6b/13/8e/6b138e9532d25a9bb2abbe402dc361b8.jpg"
+            alt=""
+            class="img-thumbnail mx-3"
+          />
+          <img
+            v-else-if="nameAnimals === 'Cat'"
+            src="https://i.pinimg.com/236x/10/8f/eb/108feb8d2c9ba31b736e547e31236452.jpg"
+            alt=""
+            class="img-thumbnail mx-3"
+          />
+          <img
+            v-else-if="nameAnimals === 'Pig'"
+            src="https://i.pinimg.com/236x/44/ff/ec/44ffecec17fb5d029e163738fb5e7f12.jpg"
+            alt=""
+            class="img-thumbnail mx-3"
+          />
+
+          <p v-else class="alert alert-danger">Not Found</p>
+
+          <div>
+            <button class="btn btn-info m-1" @click="handleNameAnimals('Dog')">
+              Dog
+            </button>
+            <button class="btn btn-info m-1" @click="handleNameAnimals('Cat')">
+              Cat
+            </button>
+            <button class="btn btn-info m-1" @click="handleNameAnimals('Pig')">
+              Pig
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-dark p-3 rouded text-center text-light mb-3"
+        id="listRendering"
+      >
+        <h2>listRendering</h2>
+        <hr />
+        <div>
+          <ul
+            class="flex-column d-flex justify-content-center align-items-center"
+            style="list-style: none"
+          >
+            <li v-for="(item, index) in listArtist" :key="index">
+              <img class="img-thumbnail w-50 mx-auto" :src="item.link" alt="" />
+              <h2>{{ item.name }}</h2>
+              <button @click="handleRemove(index)">Remove</button>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
